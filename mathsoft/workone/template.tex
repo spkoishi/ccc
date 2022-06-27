@@ -1,0 +1,77 @@
+\documentclass{ctexart}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\title{作业一:给出黎曼可积和勒贝格可积的定义, 并分析二者的区别}
+
+
+\author{蔡聪聪 \\ 信息与计算科学 3180102279}
+
+\begin{document}
+
+\maketitle
+
+
+为了对数学分析中某些结果加深理解,这里就一维情形考虑有限区间[a,b]上f(x)的积分,对f上的黎曼积分(简称R积分)与勒贝格积分（简称L积分）进行若干比较
+\section{R可积和L可积的定义}
+\subsection{R可积的定义}
+设f是定义在[a,b]上的有界函数,区间[a,b]的任一分划\\
+\begin{equation*}
+  x_0=a<x_1<x_2<\cdots<x_n=b
+\end{equation*}\\
+将[a,b]分成n个部分,在每个小区间$[x_{i},x_{i+1}]$上任取一点 $\xi_i,i=0,1,\cdots,n-1$,作和\\
+\begin{equation}
+  \sigma=\sum\limits_{i=0}^{n-1}f(\xi_i)(x_{i+1}-x_i).
+\end{equation}\\
+令$\lambda=max(x_{i+1}-x_i)$.如果对区间任意的划分与$\xi_i$的任意取法,当$\lambda\xrightarrow[]{}0$时,$\sigma$趋于有极限的I,则称它为f在[a,b]上的R积分,记为\\
+\begin{equation}
+I=(R)\int_a^bf(x)dx.
+\end{equation}\\
+
+\subsection{L可积的定义}
+设f是定义在可测集D上的可测函数,对每一$x\in D$,令\\
+\begin{equation}
+f_{+}(x)=max\left\{0,f(x)\right\},f_{-}(x)=max\left\{0,-f(x)\right\}
+\end{equation}\\
+则$f_{+}$和$f_{-}$分别称为函数f的正部和负部，它们都是非负可测函数并且\\
+\begin{equation}
+f(x)=f_{+}-f_{-},|f(x)|=f_{+}+f_{-}.
+\end{equation}\\
+今若$\int_Df_{+}dx$和$\int_Df_{-}dx$不同时为$\infty$,则f在D上的勒贝格积分定义为\\
+\begin{equation}
+\int_Dfdx=\int_Df_{+}dx-\int_Df_{-}dx.
+\end{equation}\\
+此外当$\int_Dfdx$有限时,称f在D上L可积,并记为$f\in L(D)$.
+
+\section{R积分与L积分比较}
+从某些极限过程来看,L积分较R积分优越些.\\
+举傅里叶级数的逐项积分问提来做进一步说明.在数学分析中,这个问题是不易讲的透彻的.现在用L积分观点来讨论.假定f(x)是以2$\pi$为周期的L可积函数,那么它有傅里叶展式\\
+\begin{equation}\label{ep::a2}
+f(x)\sim\dfrac{a_0}{2}+\sum\limits_{n=1}^{\infty}(a_ncosnx+b_nsinnx)
+\end{equation}\\
+其中\\
+\begin{gather*}
+  a_n=\dfrac{1}{\pi}\int_{-\pi}^{\pi}f(x)cosnxdx, n=0,1,2,\cdots,\\
+  b_n=\dfrac{1}{\pi}\int_{-\pi}^{\pi}f(x)sinnxdx, n=1,2,\cdots,
+\end{gather*}\\
+所写展开式(\ref{ep::a2})并不表示级数收敛,但是,可积函数f(x)的傅里叶展开式却可以逐项积分.就是说,有等式\\
+\begin{equation}\label{ep::a3}
+\int_{\alpha}^{\beta}f(t)dt=\int_{\alpha}^{\beta}\dfrac{a_0}{2}dt+\sum\limits_{n=1}^{\infty}\int_{\alpha}^{\beta}(a_ncosnt+b_nsinnt)dt
+\end{equation}\\
+成立，其中$[\alpha,\beta]$是$[-\pi,\pi]$的任意子区间,所有积分均指勒贝格积分.\\
+其实，引进区间特征函数$\varphi=\chi_{[\alpha,\beta]}(x)$来讨论，它限制在$[-\pi,\pi]$上定义，我们将它延拓到$(-\infty,\infty)$使其有周期$2\pi$，并约定保持函数记号不变.那么$\varphi(x)$有傅里叶展开式\\
+\begin{equation}\label{ep::a4}
+\varphi(x)\sim\dfrac{A_0}{2}+\sum\limits_{n=1}^{\infty}(A_ncosnx+B_nsinnx)
+\end{equation}\\
+
+令级数(\ref{ep::a4})的部分和为$\varphi_n(x)$,则几乎处处有$\varphi(x)=\lim\limits_{n \rightarrow \infty}\varphi_n(x)$\\
+不难验明,要证的等式(\ref{ep::a3})化为等式\\
+\begin{equation}\label{ep::a5}
+\int_{-\pi}^{\pi}f(x)\varphi(x)dm=\lim\limits_{n \rightarrow\infty}\int_{-\pi}^{\pi}f(x)\varphi_{n}(x)dm
+\end{equation}\\
+现知函数列$\left\{f(x)\varphi_{n}(x)\right\}_{n \in N}$的极限几乎处处为$f(x)\varphi(x)$,而且可以用初等方法证明$\varphi_{n}(x)$是一致有界的,$\varphi_{n}(x)\le C(n \in N)$.\\
+
+这样,函数序列$\left\{f(x)\varphi_{n}(x)\right\}_{n \in N}$有可积的控制函数$C|f(x)|$.根据勒贝格控制收敛定理,有(\ref{ep::a5})成立.由此可见，用勒贝格积分解决傅里叶级数逐项积分问题是相当有效的.
+
+\end{document}
